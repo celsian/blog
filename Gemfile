@@ -40,6 +40,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'pry-rails'
 end
 
 group :doc do

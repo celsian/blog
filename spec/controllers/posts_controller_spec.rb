@@ -4,10 +4,19 @@ RSpec.describe PostsController, type: :controller do
   let(:post) { FactoryGirl.create(:post) }
   let(:posts) { Post.all }
 
-  it "orders by date" do
-    post1 = FactoryGirl.create(:post, content: "This is the first post.")
-    post2 = FactoryGirl.create(:post, content: "This is the second post.")
-
-    expect(posts.index(post2)).to be > posts.index(post1)
+  context "GET index" do
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
   end
+
+  context "GET show" do
+    it "renders the show template" do
+      post1 = FactoryGirl.create(:post, content: "This is the first post.")
+      get :show, id: post1.id
+      expect(response).to render_template("show")
+    end
+  end
+
 end

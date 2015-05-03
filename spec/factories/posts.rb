@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
-    title "MyString"
-content "MyString"
+    title ""
+    content "This is a test blog post."
   end
 
 end

@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  let(:post) { FactoryGirl.create(:post) }
-  let(:posts) { Post.all }
+  let(:default_post) { FactoryGirl.create(:post) }
 
   describe "Get #index" do
     context "GET index" do
@@ -14,20 +13,29 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "Get #show" do
-    context "GET show" do
+    context "for existing post" do
       it "renders the show template" do
-        post1 = FactoryGirl.create(:post, content: "This is the first post. Show")
-
-        get :show, id: post1.id
+        get :show, id: default_post.id
         expect(response).to render_template("show")
       end
     end
   end
 
   describe "GET #new" do
-    context "GET new" do
+    context "with valid attributes" do
       it "renders the new template" do
         get :new
+        expect(response).to render_template("new")
+      end
+    end
+  end
+
+  describe "POST #create" do
+    context "creates the post" do
+      it "and redirects to the post" do
+        post_attributes = default_post.attributes
+        post :create, post: post_attributes
+        expect(response).to redirect_to Post.last
       end
     end
   end

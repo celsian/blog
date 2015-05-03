@@ -21,6 +21,15 @@ RSpec.feature "posts", :type => :feature do
       click_button "Create Post"
       expect(page).to have_content "This is test content."
     end
+
+    scenario "creates a new post without content" do
+      visit new_post_path
+
+      fill_in 'Content', with: ""
+
+      click_button "Create Post"
+      expect(page).to have_content "Error"
+    end
   end
 
 end

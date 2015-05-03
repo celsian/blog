@@ -1,9 +1,14 @@
-<%= form_for @post do |f| %>
+<% provide(:title, 'RoR') %>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @post do |f| %>
 
-  <div class="field">
-      <%= f.label :content %>
-      <%= f.text_field :content, autofocus: true %>
+      <div class="field">
+          <%= f.label :content %>
+          <%= f.text_field :content, autofocus: true %>
+      </div>
+
+      <%= f.submit class: 'btn btn-primary'  %>
+    <% end %>
   </div>
-
-  <%= f.submit class: 'btn btn-primary'  %>
-<% end %>
+</div>

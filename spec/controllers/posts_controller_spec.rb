@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   let(:default_post) { FactoryGirl.create(:post) }
+  let(:invalid_post) { FactoryGirl.build(:post, :invalid) }
 
   describe "Get #index" do
     context "GET index" do
@@ -31,11 +32,19 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "POST #create" do
-    context "creates the post" do
+    context "creates valid post" do
       it "and redirects to the post" do
         post_attributes = default_post.attributes
         post :create, post: post_attributes
         expect(response).to redirect_to Post.last
+      end
+    end
+
+    context "creates invalid post" do
+      it "and redirects to the new template" do
+        post_attributes = invalid_post.attributes
+        post :create, post: post_attributes
+        expect(response).to render_template("new")
       end
     end
   end

@@ -13,8 +13,13 @@ RSpec.feature "posts", :type => :feature do
   end
 
   describe "new template" do
-    scenario "create new post" do
+    scenario "creates a new post" do
       visit new_post_path
+
+      fill_in 'Content', with: "This is test content."
+
+      click_button "Create Post"
+      expect(page).to have_content "This is test content."
     end
   end
 

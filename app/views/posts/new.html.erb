@@ -1,0 +1,9 @@
+<%= form_for @post do |f| %>
+
+  <div class="field">
+      <%= f.label :content %>
+      <%= f.text_field :content, autofocus: true %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary'  %>
+<% end %>

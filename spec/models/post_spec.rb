@@ -12,11 +12,11 @@ RSpec.describe Post, type: :model do
     end
 
     context "new posts" do
-      it "order by date" do
+      it "order by newest first to oldest last" do
         post1 = FactoryGirl.create(:post, content: "This is the first post. Order")
         post2 = FactoryGirl.create(:post, content: "This is the second post. Order")
 
-        expect(posts.index(post2)).to be > posts.index(post1)
+        expect(posts.index(post2)).to be < posts.index(post1)
       end
     end
   end

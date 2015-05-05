@@ -23,6 +23,15 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "Get #show_recent" do
+    context "for the last 5 posts" do
+      it "renders the posts" do
+        get :show_recent
+        expect(response).to render_template("show_recent")
+      end
+    end
+  end
+
   describe "GET #new" do
     context "with valid attributes" do
       it "renders the new template" do
@@ -37,7 +46,7 @@ RSpec.describe PostsController, type: :controller do
       it "and redirects to the post" do
         post_attributes = default_post.attributes
         post :create, post: post_attributes
-        expect(response).to redirect_to Post.last
+        expect(response).to redirect_to Post.first
       end
     end
 

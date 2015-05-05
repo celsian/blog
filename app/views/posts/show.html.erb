@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="page-header">
-      <h1>Test Text <small><%= Time.now %></small></h1>
+      <h1><%= @post.title %><small> <%= @post.created_at.strftime("%l:%M%P on %B %-d, %Y") %></small></h1>
     </div>
   </div>
   <div class="row">

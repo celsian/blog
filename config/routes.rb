@@ -1,7 +1,9 @@
 Blog::Application.routes.draw do
   # root to: "posts#show", id: "#{Post.last.id}"
-  root to: "posts#index"
+  root to: "posts#show_recent"
   resources :posts
+
+  get 'posts/show_recent', to: 'posts#show_recent', as: 'show_recent'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

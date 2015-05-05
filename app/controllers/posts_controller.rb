@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def show_recent
+    @posts = Post.all.first(5)
+    @post = @posts.shift
+  end
+
   def new
     @post = Post.new
   end

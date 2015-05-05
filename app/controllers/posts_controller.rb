@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show_recent
-    @posts = Post.all.first(5)
+    @posts = Post.first(5)
     @post = @posts.shift
   end
 

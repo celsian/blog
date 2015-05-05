@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="page-header">
+      <h1><%= @post.title %><small> <%= @post.created_at.strftime("%l:%M%P on %B %-d, %Y") %></small></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <%= @post.content %>
+      <P>This is a rather long bit of post content in an attempt to see how the page would look with multiple lines and a lot of text. Lorem ipsum to follow or something like that test test test. Lol? Much <3.</P>
+      <P>This is a rather long bit of post content in an attempt to see how the page would look with multiple lines and a lot of text. Lorem ipsum to follow or something like that test test test. Lol? Much <3.
+      This is a rather long bit of post content in an attempt to see how the page would look with multiple lines and a lot of text. Lorem ipsum to follow or something like that test test test. Lol? Much <3.This is a rather long bit of post content in an attempt to see how the page would look with multiple lines and a lot of text. Lorem ipsum to follow or something like that test test test. Lol? Much <3.</P>
+      <P>As always, raise your eyes to the sky and observe.</P>
+
+      <% @posts.each do |post| %>
+          <div class="page-header">
+            <h1><%= post.title %><small> <%= post.created_at.strftime("%l:%M%P on %B %-d, %Y") %></small></h1>
+          </div>
+          <%= post.content %>
+      <% end %>
+    </div>
+      <div class="sidebar-module sidebar-module-inset">
+        <div class="col-xs-3 col-xs-3 col-xs-offset-1">
+          <div class="well well-sm">
+            <a href="#" class="thumbnail">
+              <img src="https://avatars2.githubusercontent.com/u/1855631?v=3&s=460" alt="...">
+            </a>
+            <p>
+              <small>I'm Lucas Paolella, blogger extraordinaire and aspiring Ruby on Rails developer. This blog initially served as an exercise in TDD, but has developed into a place for me to catalog my discoveries as I grow in the field. Welcome!
+              </small>
+            </p>
+            <p>
+              <center>
+                <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" height="36" width="36"> <img src="http://equusfoundation.org/images/twitter-logo.jpg"> <img src="http://www.skrenta.com/images/stackoverflow.jpg" height="36" width="36"> <img src="http://cdn.macrumors.com/article-new/2013/08/youtube.png" height="36" width="36">
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title"><h2><%= @post.title %><small> <%= @post.created_at.strftime("%l:%M%P on %B %-d, %Y") %></small></h2></h1>
+    </div>
+    <div class="panel-body">
+      <%= @post.content %>
+    </div>
+    </div>
+  </div>
+</div>

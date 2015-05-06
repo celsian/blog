@@ -14,15 +14,30 @@ RSpec.feature "posts", :type => :feature do
 
   describe "show_recent template" do
     scenario "shows up to the five most recent posts" do
-      post1 = FactoryGirl.create(:post, content: "This is the first post's content.")
-      post2 = FactoryGirl.create(:post, content: "This is the second post's content.")
-      post3 = FactoryGirl.create(:post, content: "This is the third post's content.")
-      post4 = FactoryGirl.create(:post, content: "This is the fourth post's content.")
-      post5 = FactoryGirl.create(:post, content: "This is the fifth post's content.")
-      post6 = FactoryGirl.create(:post, content: "This is the sixth post's content.")
+
+      0.upto(8) do |num|
+        FactoryGirl.create(:post, content: "This is post number #{num}.")
+      end
+
       visit '/posts_show_recent'
-      expect(page).to have_content "This is the sixth post's content."
-      expect(page).to have_content "This is the second post's content."
+
+      4.upto(8) do |num| #Ensures the last 5 posts are displayed
+        expect(page).to have_content "This is post number #{num}."
+      end
+    end
+  end
+
+  describe "show_by_month template" do
+    scenario "shows all posts from a specific month & year" do
+      FactoryGirl.create(:post, content: "This post is from Feb 2015.", created_at: Time.new(2015,2,20, 13,30,0, "-08:00"))
+      FactoryGirl.create(:post, content: "This post is from Feb 2015 also.", created_at: Time.new(2015,2,22, 15,24,0, "-08:00"))
+      FactoryGirl.create(:post, content: "This post is from March 2015.", created_at: Time.new(2015,3,05, 9,15,0, "-08:00"))
+
+      visit '/posts_show_by_month/0215'
+
+      expect(page).to have_content "This post is from Feb 2015."
+      expect(page).to have_content "This post is from Feb 2015 also."
+      expect(page).to have_no_content "This post is from March 2015."
     end
   end
 

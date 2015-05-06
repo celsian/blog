@@ -8,8 +8,8 @@ class PostsController < ApplicationController
   end
 
   def show_recent
-    @posts = Post.first(5)
-    @post = @posts.shift
+    @posts = Post.all[0..4]
+    @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
   end
 
   def new

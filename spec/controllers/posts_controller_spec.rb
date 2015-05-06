@@ -25,9 +25,18 @@ RSpec.describe PostsController, type: :controller do
 
   describe "Get #show_recent" do
     context "for the last 5 posts" do
-      it "renders the posts" do
+      it "renders the show_recent posts" do
         get :show_recent
         expect(response).to render_template("show_recent")
+      end
+    end
+  end
+
+  describe "Get #show_by_month" do
+    context "show posts from a single month" do
+      it "renders the show_by_month posts" do
+        get :show_by_month
+        expect(response).to render_template("show_by_month")
       end
     end
   end

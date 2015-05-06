@@ -35,7 +35,7 @@ RSpec.describe PostsController, type: :controller do
   describe "Get #show_by_month" do
     context "show posts from a single month" do
       it "renders the show_by_month posts" do
-        get :show_by_month
+        get :show_by_month, month_year: "0100"
         expect(response).to render_template("show_by_month")
       end
     end

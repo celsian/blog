@@ -12,6 +12,16 @@ class PostsController < ApplicationController
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
   end
 
+  def show_by_month
+    month_year = params[:month_year].split("")
+    month = (month_year[0] + month_year[1]).to_i
+    year = (month_year[2] + month_year[3]).to_i
+    startTime = Time.new(2000+year,month,01, 0,0,0)
+
+    @posts = Post.where(created_at: startTime..(startTime+1.month))
+    @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
+  end
+
   def new
     @post = Post.new
   end

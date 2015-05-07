@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   def previous
     (Post.where("posts.id < ?", self.id).order("posts.id DESC").limit(1)).first
   end
-  ########## THESE ARE NOT FUNCTIONING AS INTENDED
+########## THESE ARE NOT FUNCTIONING AS INTENDED
 
   def self.nextMonth(startTime)
     if Post.where(created_at: (startTime+1.month)..(startTime+2.months)).length > 0

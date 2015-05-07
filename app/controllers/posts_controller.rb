@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    @next_post = @post.next
+    @previous_post = @post.previous
+
+    @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
   end
 
   def show_recent
@@ -16,9 +21,12 @@ class PostsController < ApplicationController
     month_year = params[:month_year].split("")
     month = (month_year[0] + month_year[1]).to_i
     year = (month_year[2] + month_year[3]).to_i
-    startTime = Time.new(2000+year,month,01, 0,0,0)
+    @startTime = Time.new(2000+year,month,01, 0,0,0)
 
-    @posts = Post.where(created_at: startTime..(startTime+1.month))
+    @next_month = Post.nextMonth(@startTime)
+    @previous_month = Post.previousMonth(@startTime)
+
+    @posts = Post.where(created_at: @startTime..(@startTime+1.month))
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
   end
 

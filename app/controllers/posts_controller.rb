@@ -4,10 +4,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @posts = Post.where(id: params[:id])
 
-    @next_post = @post.next
-    @previous_post = @post.previous
+    @next_post = @posts.first.next.first
+    @previous_post = @posts.first.previous.first
 
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
   end

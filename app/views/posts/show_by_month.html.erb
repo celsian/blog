@@ -3,7 +3,24 @@
 
   </div>
   <div class="row">
-    <%= render "posts" %>
-    <%= render "sidebar" %>
+    <div class="col-xs-8">
+      <center><h3><B>Blog entries for <%= @startTime.strftime("%B %Y") %></B></h3></center>
+      <%= render "posts" %>
+      <br>
+      <br>
+      <nav>
+        <ul class="pager">
+          <% if @previous_month %>
+          <li class="previous"><%= link_to "<span aria-hidden='true'>&larr;</span> #{@previous_month[1]}".html_safe, show_by_month_path(month_year: @previous_month[0]) %></li>
+          <% end %>
+          <% if @next_month %>
+          <li class="next"><%= link_to "#{@next_month[1]} <span aria-hidden='true'>&rarr;</span>".html_safe, show_by_month_path(month_year: @next_month[0]) %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <div class="sidebar-module sidebar-module-inset">
+      <%= render "sidebar" %>
+    </div>
   </div>
 </div>

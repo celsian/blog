@@ -3,51 +3,7 @@
 
   </div>
   <div class="row">
-    <div class="col-xs-8">
-      <% @posts.each do |post| %>
-          <div class="page-header">
-            <h1><%= post.title %><small> <%= post.created_at.strftime("%l:%M%P on %B %-d, %Y") %></small></h1>
-          </div>
-          <%= post.content %>
-      <% end %>
-      <% if @posts.length == 0 %>
-        <div class="page-header">
-            <h1>There doesn't appear to be anything here...<small> <%= Time.now.strftime("%l:%M%P on %B %-d, %Y") %></small></h1>
-          </div>
-      <% end %>
-    </div>
-      <div class="sidebar-module sidebar-module-inset">
-        <br>
-        <br>
-        <div class="col-xs-3 col-xs-3 col-xs-offset-1">
-          <div class="well well-sm">
-            <a href="#" class="thumbnail">
-              <img src="https://avatars2.githubusercontent.com/u/1855631?v=3&s=460" alt="...">
-            </a>
-            <p>
-              <small>I'm Lucas Paolella, blogger extraordinaire and aspiring Ruby on Rails developer. This blog initially served as an exercise in TDD, but has developed into a place for me to catalog my discoveries as I grow in the field. Welcome!
-              </small>
-            </p>
-            <p>
-              <center>
-                <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" height="36" width="36"> <img src="http://equusfoundation.org/images/twitter-logo.jpg"> <img src="http://www.skrenta.com/images/stackoverflow.jpg" height="36" width="36"> <img src="http://cdn.macrumors.com/article-new/2013/08/youtube.png" height="36" width="36">
-              </center>
-            </p>
-          </div>
-            <a class="twitter-timeline" href="https://twitter.com/Celsian" data-widget-id="595721277245108224">Tweets by @Celsian</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          <P>
-          </P>
-          <div class="well well-sm">
-            <small><Center>Blogging History:</Center></small>
-            <br>
-            <ul>
-            <% @posts_by_month.each do |monthname, posts| %>
-              <li><small><%= monthname %></small></li>
-            <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <%= render "posts" %>
+    <%= render "sidebar" %>
   </div>
 </div>

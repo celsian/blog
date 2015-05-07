@@ -28,16 +28,40 @@ RSpec.feature "posts", :type => :feature do
   end
 
   describe "show_by_month template" do
-    scenario "shows all posts from a specific month & year" do
+    before(:each) do 
+      FactoryGirl.create(:post, content: "This post is from Jan 2015.", created_at: Time.new(2015,1,20, 13,30,0, "-08:00"))
       FactoryGirl.create(:post, content: "This post is from Feb 2015.", created_at: Time.new(2015,2,20, 13,30,0, "-08:00"))
       FactoryGirl.create(:post, content: "This post is from Feb 2015 also.", created_at: Time.new(2015,2,22, 15,24,0, "-08:00"))
       FactoryGirl.create(:post, content: "This post is from March 2015.", created_at: Time.new(2015,3,05, 9,15,0, "-08:00"))
+    end
 
+    scenario "shows all posts from a specific month & year" do
       visit '/posts_show_by_month/0215'
 
       expect(page).to have_content "This post is from Feb 2015."
       expect(page).to have_content "This post is from Feb 2015 also."
       expect(page).to have_no_content "This post is from March 2015."
+    end
+
+    scenario "displays previous and next month links" do
+      visit '/posts_show_by_month/0215'
+
+      expect(page).to have_content "March 2015"
+      expect(page).to have_content "January 2015"
+    end
+
+    scenario "displays next month link only if it exists" do
+      visit '/posts_show_by_month/0315'
+
+      expect(page).to have_content "February 2015"
+      expect(page).to have_no_content "April 2015"
+    end
+
+    scenario "displays previous month link only if it exists" do
+      visit '/posts_show_by_month/0115'
+
+      expect(page).to have_content "February 2015"
+      expect(page).to have_no_content "December 2014"
     end
   end
 

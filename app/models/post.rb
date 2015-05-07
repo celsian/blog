@@ -11,15 +11,13 @@ class Post < ActiveRecord::Base
     messages
   end
 
-########## THESE ARE NOT FUNCTIONING AS INTENDED
   def next
-    (Post.where("posts.id > ?", self.id).order("posts.id ASC").limit(1)).first
+    Post.where("posts.created_at > ?", self.created_at).order("posts.created_at ASC").limit(1)
   end
 
   def previous
-    (Post.where("posts.id < ?", self.id).order("posts.id DESC").limit(1)).first
+    Post.where("posts.created_at < ?", self.created_at).order("posts.created_at DESC").limit(1)
   end
-########## THESE ARE NOT FUNCTIONING AS INTENDED
 
   def self.nextMonth(startTime)
     if Post.where(created_at: (startTime+1.month)..(startTime+2.months)).length > 0

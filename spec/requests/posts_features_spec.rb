@@ -13,17 +13,22 @@ RSpec.feature "posts", :type => :feature do
   end
 
   describe "show_recent template" do
-    scenario "shows up to the five most recent posts" do
-
-      0.upto(8) do |num|
-        FactoryGirl.create(:post, content: "This is post number #{num}.")
+    before (:each) do
+      0.upto(12) do |num|
+          FactoryGirl.create(:post, content: "This is post number #{num}.")
       end
+    end
 
+    scenario "shows up to the five most recent posts" do
       visit '/posts_show_recent'
 
-      4.upto(8) do |num| #Ensures the last 5 posts are displayed
+      8.upto(12) do |num| #Ensures the last 5 posts are displayed
         expect(page).to have_content "This is post number #{num}."
       end
+    end
+
+    scenario "shows next 5 and previous 5" do
+
     end
   end
 

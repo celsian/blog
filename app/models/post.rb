@@ -11,12 +11,20 @@ class Post < ActiveRecord::Base
     messages
   end
 
-  def next
+  def next #returns array with single post in it
     Post.where("posts.created_at > ?", self.created_at).order("posts.created_at ASC").limit(1)
   end
 
-  def previous
+  def previous #returns array with single post in it
     Post.where("posts.created_at < ?", self.created_at).order("posts.created_at DESC").limit(1)
+  end
+
+  def next_five
+    Post.where("posts.created_at > ?", self.created_at).order("posts.created_at ASC").limit(5)
+  end
+
+  def previous_five
+    Post.where("posts.created_at < ?", self.created_at).order("posts.created_at DESC").limit(5)
   end
 
   def self.nextMonth(startTime)

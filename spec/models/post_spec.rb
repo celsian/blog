@@ -8,6 +8,12 @@ RSpec.describe Post, type: :model do
     before(:each) do 
       @post1 = FactoryGirl.create(:post, content: "This is the first post. Order")
       @post2 = FactoryGirl.create(:post, content: "This is the second post. Order")
+
+      0.upto(16) do |n|
+        FactoryGirl.create(:post, content: "This is post number #{n}.")
+      end
+
+      @last_post = FactoryGirl.create(:post, content: "This is the last post. Order")
     end
 
     context "with no content" do
@@ -29,5 +35,20 @@ RSpec.describe Post, type: :model do
     it ".previous returns the next post based on created_at date" do
       expect(@post2.previous.first).to be == @post1
     end
+
+    it ".next_five returns up to the next 5 posts after the current post" do
+      next_five_posts = @post1.next_five
+
+      expect(next_five_posts.length).to be 5
+      expect(next_five_posts).to include @post1.next.first
+    end
+
+    it ".next_five returns up to the previous 5 posts before the current post" do
+      previous_five_posts = @last_post.previous_five
+
+      expect(previous_five_posts.length).to be 5
+      expect(previous_five_posts).to include @last_post.previous.first
+    end
+    
   end
 end

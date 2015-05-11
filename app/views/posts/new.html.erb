@@ -1,20 +1,22 @@
 <% provide(:title, 'RoR') %>
-<div class="row">
-  <div class="col-md-12">
-    <%= form_for @post do |f| %>
-
-      <div class="field">
-          <p>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-          </p>
-          <p>
-            <%= f.label :content %>
-            <%= f.text_area :content, autofocus: true %>
-          </p>
+<br>
+<%= form_for(@post, html: {class: 'form-horizontal'}) do |f| %>
+    <div class="field form-group">
+      <%= f.label :title, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <%= f.text_field :title, class: 'form-control' %>
       </div>
-
-      <%= f.submit class: 'btn btn-primary'  %>
-    <% end %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :content, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <%= f.text_area :content, class: 'form-control', rows: "10" %>
+        <small style="color:grey;">Content field accepts <%= link_to "markdown", 'https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet', target: "_blank" %>.</small>
+      </div>
+    </div>
+    <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
   </div>
-</div>
+<% end %>

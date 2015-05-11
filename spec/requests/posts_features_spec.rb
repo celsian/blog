@@ -74,16 +74,30 @@ RSpec.feature "posts", :type => :feature do
     scenario "creates a new post" do
       visit new_post_path
 
+      fill_in 'Title', with: "This is a test title"
       fill_in 'Content', with: "This is test content."
 
       click_button "Create Post"
+      expect(page).to have_content "This is a test title"
       expect(page).to have_content "This is test content."
     end
 
     scenario "creates a new post without content" do
       visit new_post_path
 
+      fill_in 'Title', with: "This is some title"
       fill_in 'Content', with: ""
+
+      click_button "Create Post"
+      expect(page).to have_content "Error"
+    end
+
+    scenario "creates a new post without content" do
+      visit new_post_path
+
+      fill_in 'Title', with: ""
+      fill_in 'Content', with: "This is some fake content"
+
 
       click_button "Create Post"
       expect(page).to have_content "Error"

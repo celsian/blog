@@ -24,7 +24,7 @@
     <br>
     <ul>
     <% @posts_by_month.each do |month_year, posts| %>
-      <li><small><%= link_to "#{month_year}", show_by_month_path(posts.first.created_at.strftime("%m%y")) %></small></li>
+      <li><small><%= link_to "#{month_year}", posts_show_by_month_path(posts.first.created_at.strftime("%m%y")) %></small></li>
     <% end %>
     </ul>
   </div>

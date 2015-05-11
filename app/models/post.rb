@@ -1,12 +1,12 @@
 class Post < ActiveRecord::Base
-  validates :content, :title, presence: true
+  validates :title, :content, presence: true
 
   default_scope { order("created_at DESC") }
 
   def error_messages
     messages = ""
     errors.full_messages.each do |message|
-      messages += message + "."
+      messages += message + ". "
     end
     messages
   end

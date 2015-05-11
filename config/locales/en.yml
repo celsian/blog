@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+      models:
+        post: "Post"
+      attributes:
+        post:
+          title: "Title"
+          content: "Content"

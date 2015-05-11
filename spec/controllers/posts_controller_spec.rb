@@ -68,4 +68,13 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    context "post" do
+      it "renders the edit template" do
+        get :edit, id: default_post
+        expect(response).to render_template("edit")
+      end
+    end
+  end
+
 end

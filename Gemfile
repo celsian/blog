@@ -16,8 +16,8 @@ gem 'groupdate'
 gem 'turbolinks'
 
 #Gem for workers:
-gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
+# gem 'sidekiq'
+# gem 'sinatra', '>= 1.3.0', :require => nil
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

@@ -20,7 +20,7 @@ RSpec.feature "posts", :type => :feature do
     end
 
     scenario "shows up to the five most recent posts" do
-      visit '/posts_show_recent'
+      visit posts_show_recent_path
 
       8.upto(12) do |num| #Ensures the last 5 posts are displayed
         expect(page).to have_content "This is post number #{num}."
@@ -41,7 +41,7 @@ RSpec.feature "posts", :type => :feature do
     end
 
     scenario "shows all posts from a specific month & year" do
-      visit '/posts_show_by_month/0215'
+      visit posts_show_by_month_path(month_year: "0215")
 
       expect(page).to have_content "This post is from Feb 2015."
       expect(page).to have_content "This post is from Feb 2015 also."
@@ -49,21 +49,21 @@ RSpec.feature "posts", :type => :feature do
     end
 
     scenario "displays previous and next month links" do
-      visit '/posts_show_by_month/0215'
+      visit posts_show_by_month_path(month_year: "0215")
 
       expect(page).to have_content "March 2015"
       expect(page).to have_content "January 2015"
     end
 
     scenario "displays next month link only if it exists" do
-      visit '/posts_show_by_month/0315'
+      visit posts_show_by_month_path(month_year: "0315")
 
       expect(page).to have_content "February 2015"
       expect(page).to have_no_content "April 2015"
     end
 
     scenario "displays previous month link only if it exists" do
-      visit '/posts_show_by_month/0115'
+      visit posts_show_by_month_path(month_year: "0115")
 
       expect(page).to have_content "February 2015"
       expect(page).to have_no_content "December 2014"
@@ -101,6 +101,14 @@ RSpec.feature "posts", :type => :feature do
 
       click_button "Create Post"
       expect(page).to have_content "Error"
+    end
+  end
+
+  describe "edit template" do
+    scenario "edit an existing post" do
+      visit edit_post_path(id: post)
+
+      expect(page).to have_content "Title"
     end
   end
 

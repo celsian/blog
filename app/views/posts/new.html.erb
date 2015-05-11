@@ -4,8 +4,14 @@
     <%= form_for @post do |f| %>
 
       <div class="field">
-          <%= f.label :content %>
-          <%= f.text_field :content, autofocus: true %>
+          <p>
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </p>
+          <p>
+            <%= f.label :content %>
+            <%= f.text_area :content, autofocus: true %>
+          </p>
       </div>
 
       <%= f.submit class: 'btn btn-primary'  %>

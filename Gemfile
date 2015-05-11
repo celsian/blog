@@ -34,6 +34,9 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+#Markdown gem
+gem 'redcarpet'
+
 group :test, :development do
   gem 'capybara'
   gem 'rspec-rails'

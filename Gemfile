@@ -44,6 +44,8 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'pry-rails'
+
+  gem 'rack-mini-profiler' #For performance numbers on each page.
 end
 
 group :doc do

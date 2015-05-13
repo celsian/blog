@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.where(id: params[:id])
+    @posts = [Post.find(params[:id])]
 
     @next_post = @posts.first.next.first
     @previous_post = @posts.first.previous.first
@@ -18,9 +18,8 @@ class PostsController < ApplicationController
   end
 
   def show_by_month
-    month_year = params[:month_year].split("")
-    month = (month_year[0] + month_year[1]).to_i
-    year = (month_year[2] + month_year[3]).to_i
+    month = params[:month_year][0..1].to_i
+    year = params[:month_year][2..3].to_i
     @startTime = Time.new(2000+year,month,01, 0,0,0)
 
     @next_month = Post.nextMonth(@startTime)

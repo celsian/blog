@@ -109,6 +109,8 @@ RSpec.feature "posts", :type => :feature do
       visit edit_post_path(id: post)
 
       expect(page).to have_content "Title"
+      expect(page).to have_content "Content"
+      expect(page).to have_content post.content
     end
   end
 

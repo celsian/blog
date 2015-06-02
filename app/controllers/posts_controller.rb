@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
+
+  respond_to :html, :json
+
   def index
     @posts = Post.all
+    respond_with(@posts)
   end
 
   def show
@@ -10,11 +14,15 @@ class PostsController < ApplicationController
     @previous_post = @posts.first.previous.first
 
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
+
+    respond_with(@posts)
   end
 
   def show_recent
     @posts = Post.all[0..4]
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
+
+    respond_with(@posts)
   end
 
   def show_by_month
@@ -22,11 +30,11 @@ class PostsController < ApplicationController
     year = params[:month_year][2..3].to_i
     @startTime = Time.new(2000+year,month,01, 0,0,0)
 
-    @next_month = Post.nextMonth(@startTime)
-    @previous_month = Post.previousMonth(@startTime)
-
     @posts = Post.where(created_at: @startTime..(@startTime+1.month))
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
+
+    @next_month = Post.nextMonth(@posts.last)
+    @previous_month = Post.previousMonth(@posts.first)
   end
 
   def new

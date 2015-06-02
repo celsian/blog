@@ -1,9 +1,13 @@
 <% provide(:title, 'RoR') %>
-<div class="row">
+<div ng-controller="PostCtrl" class="row">
   <div class="col-md-12">
-  <h2>Users</h2>
-    <% @posts.each do |post| %>
-     <%= post.content + " " %>
-    <% end %>
+    <form>
+      <input type="text" ng-model="newEntry.name">
+    </form>
+    <ul>
+      <li ng-repeat="post in posts">
+        {{post.title}}
+      </li>
+    </ul>
   </div>
 </div>

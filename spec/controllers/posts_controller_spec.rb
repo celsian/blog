@@ -53,16 +53,14 @@ RSpec.describe PostsController, type: :controller do
   describe "POST #create" do
     context "creates valid post" do
       it "and redirects to the post" do
-        post_attributes = default_post.attributes
-        post :create, post: post_attributes
+        post :create, post: default_post.attributes
         expect(response).to redirect_to Post.first
       end
     end
 
     context "creates invalid post" do
       it "and redirects to the new template" do
-        post_attributes = invalid_post.attributes
-        post :create, post: post_attributes
+        post :create, post: invalid_post.attributes
         expect(response).to render_template("new")
       end
     end
@@ -74,6 +72,15 @@ RSpec.describe PostsController, type: :controller do
         get :edit, id: default_post
         expect(response).to render_template("edit")
       end
+    end
+  end
+
+  describe "PUT #update" do
+    it "updates the post object" do
+      post_attributes = {title: "Title updated", content: "Content updated"}
+      put :update, post: post_attributes
+
+      expect(response).to redirect_to post.id
     end
   end
 

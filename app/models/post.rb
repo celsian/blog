@@ -27,19 +27,17 @@ class Post < ActiveRecord::Base
     Post.where("posts.created_at < ?", self.created_at).order("posts.created_at DESC").limit(5)
   end
 
-  def self.nextMonth(startTime)
-    if Post.where(created_at: (startTime+1.month)..(startTime+2.months)).length > 0
-      return ["#{(startTime+1.month).strftime("%m%y")}",
-        "#{(startTime+1.month).strftime("%B %Y")}"]
+  def self.nextMonth(post_last)
+    if post_last && post_last.next.length > 0
+        return ["#{post_last.next.first.created_at.strftime("%m%y")}", "#{post_last.next.first.created_at.strftime("%B %Y")}"]
     else
       return false
     end
   end
 
-  def self.previousMonth(startTime)
-    if Post.where(created_at: (startTime-1.month)..(startTime)).length > 0
-      return ["#{(startTime-1.month).strftime("%m%y")}",
-        "#{(startTime-1.month).strftime("%B %Y")}"]
+  def self.previousMonth(post_first)
+    if post_first && post_first.previous.length > 0
+        return ["#{post_first.previous.first.created_at.strftime("%m%y")}", "#{post_first.previous.first.created_at.strftime("%B %Y")}"]
     else
       return false
     end

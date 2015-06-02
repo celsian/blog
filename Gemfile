@@ -13,7 +13,11 @@ gem "chartkick"
 gem 'groupdate'
 
 #Turbo links to stop the loading JS and CSS on every page load.
-gem 'turbolinks'
+# gem 'turbolinks'
+
+#Angular
+gem 'angular-rails-templates'
+gem 'bower-rails'
 
 #Gem for workers:
 # gem 'sidekiq'

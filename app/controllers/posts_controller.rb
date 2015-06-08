@@ -45,15 +45,31 @@ class PostsController < ApplicationController
     @post = Post.new post_params
 
     if @post.save
-      redirect_to post_path(@post), flash: {success: "Post was created."}
+      # redirect_to post_path(@post), flash: {success: "Post was created."}
+      # respond_with(@post, flash: {success: "Post was created."})
+
+      respond_with @post do |format|
+        format.html {redirect_to @post, flash: {success: "Post was created."}}
+      end
     else
       flash[:error] = "Error: #{@post.error_messages}"
       render :new
-    end
+    end    
   end
 
   def edit
     @post = Post.find(params[:id])
+  end
+
+  def destroy
+    Post.find(params[:id]).destroy
+    respond_with()
+  end
+
+  protected
+  # In Rails 4.1 and below
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
   private

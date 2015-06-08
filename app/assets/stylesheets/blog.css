@@ -1,0 +1,19 @@
+.table-parent {
+    display: table;
+    vertical-align: bottom;
+    width: 0%;
+}
+
+.table-parent span {
+    display: table-cell;
+    width: 0%;
+    height: 10px;
+}
+
+.big-inline {
+    font-size: 20px;
+}
+
+.small-inline {
+    font-size: 14px;
+}

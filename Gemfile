@@ -16,8 +16,7 @@ gem 'groupdate'
 # gem 'turbolinks'
 
 #Angular
-gem 'angular-rails-templates'
-gem 'bower-rails'
+gem 'angularjs-rails'
 
 #Gem for workers:
 # gem 'sidekiq'

@@ -26,13 +26,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.8)
-    angular-rails-templates (0.2.0)
-      railties (>= 3.1)
-      sprockets (~> 2)
-      tilt
+    angularjs-rails (1.4.0)
     arel (4.0.2)
     bcrypt (3.1.10)
-    bower-rails (0.9.2)
     builder (3.1.4)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -219,8 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angular-rails-templates
-  bower-rails
+  angularjs-rails
   capybara
   chartkick
   coffee-rails (~> 4.0.0)
